@@ -1,0 +1,256 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Primary theme colors - Dark blue/purple base */
+  --primary: 230 60% 20%; /* #16213e */
+  --primary-foreground: 0 0% 100%; /* #ffffff */
+  --secondary: 120 92% 65%; /* #50fa7b - neon green */
+  --secondary-foreground: 0 0% 0%; /* #000000 */
+  --accent: 348 80% 60%; /* #e94560 - vibrant red */
+  --accent-foreground: 0 0% 100%; /* #ffffff */
+  
+  /* System Colors */
+  --success: 142 72% 29%;
+  --success-foreground: 210 40% 98%;
+  --success-muted: 142 72% 90%;
+  --warning: 38 92% 50%;
+  --warning-foreground: 48 96% 98%;
+  --warning-muted: 38 92% 90%;
+  --error: 348 80% 60%; /* Matching accent for consistency */
+  --error-foreground: 210 40% 98%;
+  --error-muted: 348 80% 90%;
+  --info: 190 100% 77%; /* #8be9fd - cyan */
+  --info-foreground: 0 0% 0%;
+  --info-muted: 190 100% 90%;
+  
+  /* Surface Colors - Default light mode, but we'll use dark mode */
+  --surface: 0 0% 100%;
+  --surface-foreground: 230 60% 20%;
+  --surface-muted: 230 20% 96%;
+  --background: 0 0% 100%;
+  --foreground: 230 60% 20%;
+  --card: 0 0% 100%;
+  --card-foreground: 230 60% 20%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 230 60% 20%;
+  --muted: 230 20% 96%;
+  --muted-foreground: 230 10% 45%;
+  
+  /* Color scales for primary - Dark blue/purple */
+  --primary-50: 230 60% 97%;
+  --primary-100: 230 60% 94%;
+  --primary-200: 230 60% 85%;
+  --primary-300: 230 60% 70%;
+  --primary-400: 230 60% 50%;
+  --primary-500: 230 60% 35%;
+  --primary-600: 230 60% 25%;
+  --primary-700: 230 60% 20%; /* #16213e */
+  --primary-800: 230 60% 15%;
+  --primary-900: 230 60% 10%;
+  
+  /* Color scales for secondary - Neon green */
+  --secondary-50: 120 92% 95%;
+  --secondary-100: 120 92% 90%;
+  --secondary-200: 120 92% 85%;
+  --secondary-300: 120 92% 80%;
+  --secondary-400: 120 92% 75%;
+  --secondary-500: 120 92% 70%;
+  --secondary-600: 120 92% 65%; /* #50fa7b */
+  --secondary-700: 120 92% 55%;
+  --secondary-800: 120 92% 45%;
+  --secondary-900: 120 92% 35%;
+  
+  /* Color scales for accent - Vibrant red */
+  --accent-50: 348 80% 97%;
+  --accent-100: 348 80% 94%;
+  --accent-200: 348 80% 90%;
+  --accent-300: 348 80% 80%;
+  --accent-400: 348 80% 70%;
+  --accent-500: 348 80% 60%; /* #e94560 */
+  --accent-600: 348 80% 50%;
+  --accent-700: 348 80% 40%;
+  --accent-800: 348 80% 30%;
+  --accent-900: 348 80% 20%;
+  
+  /* System Variables */
+  --border: 230 30% 92%;
+  --input: var(--border);
+  --ring: var(--primary);
+  --radius: 0.5rem;
+}
+
+.dark {
+  /* Dark mode is our primary mode for gaming portal */
+  --background: 230 60% 10%; /* #0f1729 - darker than primary-900 */
+  --foreground: 0 0% 100%; /* #ffffff */
+  --card: 230 60% 12%; /* Slightly lighter than background */
+  --card-foreground: 0 0% 100%; /* #ffffff */
+  --popover: 230 60% 12%; /* Match card */
+  --popover-foreground: 0 0% 100%; /* #ffffff */
+  --primary: 230 60% 20%; /* #16213e */
+  --primary-foreground: 0 0% 100%; /* #ffffff */
+  --secondary: 120 92% 65%; /* #50fa7b - neon green */
+  --secondary-foreground: 0 0% 0%; /* #000000 */
+  --muted: 230 40% 20%; /* Darker muted background */
+  --muted-foreground: 230 30% 70%; /* Lighter muted text */
+  --accent: 348 80% 60%; /* #e94560 - vibrant red */
+  --accent-foreground: 0 0% 100%; /* #ffffff */
+  --border: 230 40% 25%; /* Darker border */
+  --input: 230 40% 25%; /* Match border */
+  --ring: 230 60% 30%; /* Slightly lighter than primary */
+  --surface: 230 60% 12%; /* Match card */
+  --surface-foreground: 0 0% 100%; /* #ffffff */
+  --surface-muted: 230 40% 20%; /* Match muted */
+  --success: 142 72% 50%; /* Brighter in dark mode */
+  --warning: 38 92% 60%; /* Brighter in dark mode */
+  --error: 348 80% 60%; /* Match accent */
+  --info: 190 100% 77%; /* #8be9fd - cyan */
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  /* Game card component */
+  .game-card {
+    @apply bg-card text-card-foreground rounded-lg border border-border overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-accent/20;
+  }
+  
+  /* Primary button */
+  .btn-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary-600 px-4 py-2 rounded-md transition-colors;
+  }
+  
+  /* Secondary button */
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary-700 px-4 py-2 rounded-md transition-colors;
+  }
+  
+  /* Accent button */
+  .btn-accent {
+    @apply bg-accent text-accent-foreground hover:bg-accent-600 px-4 py-2 rounded-md transition-colors;
+  }
+  
+  /* Ghost button */
+  .btn-ghost {
+    @apply bg-transparent hover:bg-muted text-foreground px-4 py-2 rounded-md transition-colors;
+  }
+  
+  /* Outline button */
+  .btn-outline {
+    @apply bg-transparent border border-border hover:bg-muted text-foreground px-4 py-2 rounded-md transition-colors;
+  }
+  
+  /* Navigation link */
+  .nav-link {
+    @apply text-foreground/80 hover:text-foreground transition-colors px-3 py-2 rounded-md hover:bg-muted;
+  }
+  
+  /* Active navigation link */
+  .nav-link-active {
+    @apply text-accent font-medium;
+  }
+  
+  /* Card with neon glow effect */
+  .neon-card {
+    @apply border border-secondary/50 bg-card rounded-lg shadow-lg relative overflow-hidden;
+    box-shadow: 0 0 15px theme('colors.secondary.DEFAULT');
+  }
+  
+  /* Pixel border for retro elements */
+  .pixel-border {
+    @apply border-2 border-foreground relative;
+    image-rendering: pixelated;
+  }
+  
+  /* Game grid layout */
+  .game-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6;
+  }
+  
+  /* Section container */
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12;
+  }
+  
+  /* Badge component */
+  .badge {
+    @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium;
+  }
+  
+  .badge-primary {
+    @apply bg-primary-100 text-primary-800 dark:bg-primary-800 dark:text-primary-100;
+  }
+  
+  .badge-secondary {
+    @apply bg-secondary-100 text-secondary-800 dark:bg-secondary-800 dark:text-secondary-100;
+  }
+  
+  .badge-accent {
+    @apply bg-accent-100 text-accent-800 dark:bg-accent-800 dark:text-accent-100;
+  }
+}
+
+@layer utilities {
+  /* Neon text glow effect */
+  .text-glow-primary {
+    text-shadow: 0 0 8px theme('colors.primary.DEFAULT');
+  }
+  
+  .text-glow-secondary {
+    text-shadow: 0 0 8px theme('colors.secondary.DEFAULT');
+  }
+  
+  .text-glow-accent {
+    text-shadow: 0 0 8px theme('colors.accent.DEFAULT');
+  }
+  
+  /* Gradient text */
+  .text-gradient-primary {
+    background: linear-gradient(to right, theme('colors.primary.400'), theme('colors.primary.600'));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .text-gradient-game {
+    background: linear-gradient(to right, theme('colors.secondary.DEFAULT'), theme('colors.accent.DEFAULT'));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  /* Pixel text for retro elements */
+  .text-pixel {
+    font-family: 'Press Start 2P', cursive;
+    image-rendering: pixelated;
+  }
+  
+  /* Scanline effect for CRT-like displays */
+  .scanlines {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .scanlines::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(0, 0, 0, 0.05) 0.5%,
+      transparent 1%
+    );
+    pointer-events: none;
+    z-index: 10;
+  }
+}
